@@ -1,5 +1,5 @@
 # KotlinPractice
-This repo isjust a training project. Don't take it too serious. I am just learning kotlin basics.
+This repo is just a training project. Don't take it too serious. I am just learning kotlin basics.
 
 In this project you can found
 
