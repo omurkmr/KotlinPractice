@@ -1,3 +1,137 @@
+@file:JvmName("KotlinFile")
+
 fun main (args: Array<String>){
-    print("Hello World")
+
+    //Hello world print
+    println("Hello World")
+    println()
+
+
+    //mutable
+    var mutableText: String
+    mutableText = "first init mutableText"
+    mutableText = "second init mutableText"
+    println(mutableText)
+    println()
+
+
+    //immutable
+    val immutableText: String
+    immutableText = "first init immutableText"
+    //immutableText = "second init immutableText"
+    println(immutableText)
+    println()
+
+
+    //if as an expression
+    val ifCount = 22
+    var ifText = if (ifCount in 1..20)
+                    "in 1 to 20"
+                else
+                    "not in 1 to 20"
+    println(ifText)
+    println()
+
+
+    //when as an expression
+    var whenNumber = 5
+    var whenText: String = when (whenNumber){
+        1 -> "first"
+        in 2..4 -> "between 2 to 4"
+        else -> "more than 4"
+    }
+    println(whenText)
+    println()
+
+
+    //for loop
+    for (i in 3 downTo 1)
+        println("for loop counter $i")
+    println()
+
+
+
+    //while loop
+    var whileCondition = 1
+    while (whileCondition < 4){
+        println("while loop counter $whileCondition")
+        whileCondition++
+    }
+    println()
+
+
+    //do while loop
+    var doCondition = 1
+    do {
+        println("do while counter $doCondition")
+        doCondition++
+    }while (doCondition < 4)
+    println()
+
+
+    //break statement
+    breakLoop@ for (i in 1..3){
+        for (j in 1..3){
+            println("i = $i, j = $j")
+            if (i == 2 && j == 2)
+                break@breakLoop
+        }
+    }
+    println()
+
+    //continue statement
+    continueLoop@ for (i in 1..3){
+                    for (j in 1..3){
+            if (i == 2 && j == 2)
+                continue@continueLoop
+            println("i = $i, j = $j")
+        }
+    }
+    println()
+
+    //void function
+    add(1,2)
+
+    //return function
+    var divideNumber = subtraction(5,2)
+    println("a minus b = $divideNumber")
+    println()
+
+    //function as an expression
+    var maxNumber = max(5,9)
+    println("max number is $maxNumber")
+    println()
+
+    //default function
+    var fieldValue = field(10,20)
+    println("field size is $fieldValue")
+    println()
+
+    //named parameters
+    multiplication(thirdNum = 40, firstNum = 10, secondNum = 20)
+
+
 }
+fun add(a: Int, b: Int){
+    println("a plus b = ${a+b}")
+    println()
+}
+
+fun subtraction(a: Int, b: Int): Int{
+    return a-b
+}
+
+fun max(a: Int , b: Int) = if (a>b) a else b
+
+@JvmOverloads
+fun field(length: Int, breadth: Int, height: Int = 10): Int{
+    return length*breadth*height
+}
+
+fun multiplication (firstNum: Int, secondNum: Int, thirdNum: Int = 5){
+    println("first number = $firstNum")
+    println("second number = $secondNum")
+    println("third number = $thirdNum")
+    println()
+}
+
