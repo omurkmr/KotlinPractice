@@ -18,3 +18,13 @@ In this project you can found
     function as an expression
     default function
     named parameters
+    extention functions
+    infix function
+    tailrec function
+    primary,secondary constructor
+    inheritance
+    access modifiers
+    Abstract class
+    Interface
+    data class
+
