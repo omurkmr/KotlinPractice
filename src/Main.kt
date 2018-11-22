@@ -170,6 +170,17 @@ fun main (args: Array<String>){
     println(user3)
     println()
 
+    //object
+    //with object we can call static variables and methods but also we can override class methods like static methods
+    Customer.breath()
+    println()
+
+    //companion
+    //with this keyword we can define static variables and functions inside a class
+    println(CompanionClass.id)
+    CompanionClass.compFunc()
+    println()
+
 
 }
 fun add(a: Int, b: Int){
@@ -302,3 +313,31 @@ class Screen: ClickListener {
 }
 
 data class User(var name: String,var id: Int)
+
+open class Human(){
+
+    open fun breath(){
+        println("Human breath")
+    }
+}
+
+object Customer: Human() {
+
+    var id: Int = 10
+
+    override fun breath() {
+        super.breath()
+        println("Customer Breath")
+    }
+}
+
+class CompanionClass {
+
+    companion object {
+        var id: Int = 12
+
+        fun compFunc(){
+            println("Companion Function")
+        }
+    }
+}
