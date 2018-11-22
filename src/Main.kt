@@ -1,5 +1,7 @@
 @file:JvmName("KotlinFile")
 
+import java.math.BigInteger
+
 fun main (args: Array<String>){
 
     //Hello world print
@@ -110,6 +112,64 @@ fun main (args: Array<String>){
     //named parameters
     multiplication(thirdNum = 40, firstNum = 10, secondNum = 20)
 
+    //extention functions
+    val extendedFuncText = "Hello "
+    val extendedFuncText2 = "Kotlin "
+    val extendedFuncText3 = "World!!"
+
+    println(extendedFuncText.add(extendedFuncText2,extendedFuncText3))
+    println()
+
+    //infix function
+    var greaterNumber = 50
+    println(greaterNumber greaterValue 100)
+    println()
+
+    //tailrec function
+    println(getFibonacciNumber(10000, BigInteger("0"), BigInteger("1")))
+    println()
+
+    //primary,secondary constructor
+    var primaryConst = PrimaryClass("Kotlin",10)
+    println("id : ${primaryConst.id}")
+    println()
+
+    //all classes in kotlin are "static" and "final" default
+
+    //inheritance
+    var inheritTest = InheritTest()
+    inheritTest.eat()
+
+    var inheritUsage = InheritClass("Ahmet")
+    inheritUsage.eat()
+    println()
+
+    //access modifiers
+    var turkishPerson = Turkish()
+    // a and b not visible
+
+    //Abstract class
+    val bmwEngine = BMWEngine()
+    bmwEngine.startEngine()
+    println()
+
+    //Interface
+    val screen = Screen()
+    screen.onTouch()
+    screen.onClick()
+    println()
+
+    //data class
+    val user1 = User("Ahmet",15)
+    val user2 = User("Ahmet",15)
+
+    //user1 equals to user2 because with data class deal with data not the object
+    //also we can copy with changing some values
+    //and by using print function we will see meaningful data instead of @asd1fsdf23vd structure
+    val user3 = user1.copy(name = "Osman")
+    println(user3)
+    println()
+
 
 }
 fun add(a: Int, b: Int){
@@ -135,3 +195,110 @@ fun multiplication (firstNum: Int, secondNum: Int, thirdNum: Int = 5){
     println()
 }
 
+fun String.add(str1: String, str2: String): String {
+    return this + str1 + str2
+}
+
+infix fun Int.greaterValue(value : Int): Int {
+
+    if (this>value)
+        return this
+    else
+        return value
+}
+
+tailrec fun getFibonacciNumber(totalCall: Int, firstNum: BigInteger, secondNum: BigInteger): BigInteger {
+
+    if (totalCall == 0)
+        return secondNum
+    else
+        return getFibonacciNumber(totalCall-1,firstNum+secondNum,firstNum)
+}
+
+class PrimaryClass(var name: String){
+    var id : Int = -1
+
+    init {
+        println("Name : $name")
+        println()
+    }
+
+    //secondary constructor body called after primary constructor
+    constructor(n: String, id: Int): this(n){
+        this.id = id
+    }
+
+}
+
+open class InheritTest{
+    var color: String = ""
+
+    open fun eat(){
+        println("Eat")
+    }
+}
+
+class InheritClass(var name: String) : InheritTest(){
+    override fun eat(){
+        println("$name Eat")
+    }
+
+}
+
+open class Person(){
+    private val a = 1
+    protected val b = 2
+    internal  val c = 3
+    val d = 4
+}
+
+class Turkish: Person() {
+    fun test(){
+        //a not visible
+        //b,c,d visible
+    }
+}
+
+class TestClass(){
+    fun test(){
+        var turkishPerson = Turkish()
+
+        //a and b not visible
+        //c and d visible
+    }
+}
+
+abstract class Engine{
+    abstract var engine: String
+    abstract fun startEngine()
+}
+
+class BMWEngine : Engine() {
+    override var engine = "BMW Engine"
+
+    override fun startEngine() {
+        println("Started $engine")
+    }
+}
+
+interface ClickListener {
+    fun onClick(){
+        println("Listener onClick")
+    }
+
+    fun onTouch()
+}
+
+class Screen: ClickListener {
+
+    override fun onTouch() {
+        println("Screen onTouch")
+    }
+
+    override fun onClick() {
+        super.onClick()
+        println("Screen onClick")
+    }
+}
+
+data class User(var name: String,var id: Int)
