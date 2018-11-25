@@ -181,6 +181,101 @@ fun main (args: Array<String>){
     CompanionClass.compFunc()
     println()
 
+    //high level functions can get functions as a parameter and can return a function
+    var lambdaExample = LambdaExample()
+    lambdaExample.reverseWord("Hello",{it.reversed()})
+    println()
+
+    //with and apply
+    var employer = Employer()
+
+    with(employer){
+        name = "Ömür"
+        age = 28
+    }
+
+    employer.apply {
+        name = "Kumru"
+        age = 21
+    }.startWork()
+    println()
+
+    //immutable collection example
+    //listOf ,mapOf , setOf
+    var listExample = listOf<String>("Ahmed", "Ali", "Hatice")
+    //listExample.add
+    //listExample[1] = "Osman"
+
+    //mutable collection Example
+    var mapExample = HashMap<Int,String> ()
+    mapExample.put(1, "Osman")
+    mapExample.put(2, "Mete")
+    mapExample.remove(2)
+
+    //set example
+    //note: setOf is immutable but also guaranteed order while hashset not
+    var setExample = setOf<Int>(1,4,6,8,23,4,3,2,2,2,1)
+
+    for (keys in setExample)
+        println("Right ordered key : $keys")
+    println()
+
+    var listOfNumbers = mutableListOf<Int>(1,2,3,4,5,23,25,27,35,37,234)
+
+    //filter element
+    val listedNumbers = listOfNumbers.filter { it < 28 }
+    for (value in listedNumbers)
+        println("$value smaller than 28")
+    println()
+
+    //map element
+    val mapNumbers = listOfNumbers.map { it*it }
+    for (value in mapNumbers)
+        println("$value" )
+    println()
+
+    //we can also use them in stream so filter{}.map{} is possible
+
+    //predicates
+    val predicateNumbers = listOf<Int>(1,2,12,15,25,27,267)
+
+    //all usage
+    val allPredicates = predicateNumbers.all { it<50 }
+    println("Is all number smaller than  50 = $allPredicates")
+    println()
+
+    //any usage
+    val anyUsage = predicateNumbers.any { it<50 }
+    println("Is any of them smaller than 50 = $anyUsage")
+    println()
+
+    //count usage
+    val countUsage = predicateNumbers.count { it<50 }
+    println("How many numbers are smaller than 50 is = $countUsage")
+    println()
+
+    //also some other predicates like find, findAll etc.
+
+    //null check operators
+    val nullString :String? = null
+
+    //safe operator
+    println("length of this string is ${nullString?.length}")
+
+    //safe call with let
+    nullString?.let {
+        println("length of this string is ${nullString.length}")
+    }
+    println()
+
+    //elvis check
+    val elvisInt = nullString?.length ?: -1
+    println("length of string is $elvisInt")
+    println()
+
+    //non null assertion
+    //println("length is not null = ${nullString!!.length}")
+
 
 }
 fun add(a: Int, b: Int){
@@ -339,5 +434,21 @@ class CompanionClass {
         fun compFunc(){
             println("Companion Function")
         }
+    }
+}
+
+class LambdaExample {
+    fun reverseWord(str: String, myFunc: (String) -> String){
+        var result = myFunc(str)
+        println("Word: $str Result: $result")
+    }
+}
+
+class Employer {
+    var name: String = ""
+    var age: Int = 0
+
+    fun startWork(){
+        println("I am working right now")
     }
 }
