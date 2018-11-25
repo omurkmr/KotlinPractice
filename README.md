@@ -27,4 +27,12 @@ In this project you can found
     Abstract class
     Interface
     data class
+    open class
+    companion object
+    high level functions and lambdas
+    with and apply
+    immutable and mutable collections
+    predicates
+    null check operators
+    late and lazy init
 
