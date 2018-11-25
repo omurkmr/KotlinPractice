@@ -276,6 +276,23 @@ fun main (args: Array<String>){
     //non null assertion
     //println("length is not null = ${nullString!!.length}")
 
+    //lateinit
+    lateinit var lateVairable: String
+    //this throws exception
+    //println("lateinit text : $lateVairable")
+
+    lateVairable = "Hello"
+    println("lateinit text: $lateVairable")
+    println()
+
+    //lazy init
+    val pi by lazy {
+        3.14f
+    }
+
+    println("pi is $pi")
+    println()
+
 
 }
 fun add(a: Int, b: Int){
